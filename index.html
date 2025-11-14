@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.75, user-scalable=no">
+    <title>Team Generator - CS2</title>
+    <meta name="description" content="Create random 5vs5 teams for your Counter-Strike 2 matches from a list of 10 players. The perfect tool for balanced custom games.">
+    <link rel="alternate" hreflang="en" href="https://brian-aguirre.github.io/TeamGenerator-CS2-WEB/index.html" />
+    <link rel="alternate" hreflang="es" href="https://brian-aguirre.github.io/TeamGenerator-CS2-WEB/index.html" />
+    <link rel="alternate" hreflang="pt" href="https://brian-aguirre.github.io/TeamGenerator-CS2-WEB/index.html" />
+    <!-- Esta es una etiqueta 'catch-all'. Le dice a Google que use 'en' si el idioma del usuario no coincide con ninguno de los anteriores. -->
+    <link rel="alternate" hreflang="x-default" href="https://brian-aguirre.github.io/TeamGenerator-CS2-WEB/index.html" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/16.png" sizes="16x16">
+    <link rel="apple-touch-icon" href="images/32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/48.png" sizes="48x48">
+    <link rel="apple-touch-icon" href="images/64.png" sizes="64x64">
+    <link rel="apple-touch-icon" href="images/180.png" sizes="180x180">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<img class="imgLogo no-select" src="images/logo.svg" alt="Logo" draggable="false">
+<button id="btnChangeLanguage" class="language-button invisible"></button>
+<textarea id="nombres" class="ancho-uniforme no-select mintextnombres" data-translate-placeholder="jugadores_placeholder" placeholder="Enter player names separated by commas..."></textarea>
+<div class="botones">
+    <button id="btnGenerar" data-translate="generate" class="ancho-uniforme-boton no-select">GENERATE</button>
+    <button id="btnLimpiar" data-translate="clear" class="ancho-uniforme-boton no-select" disabled>CLEAR</button>
+</div>
+<!-- Botones de Categoría de Mapas (Oficiales de CS2) -->
+<div class="category-buttons">
+    <button class="category-btn" data-category="all">All</button>
+    <hr class="vertical-separator">
+    <button class="category-btn" data-translate="premier" data-category="premier">Premier</button>
+    <button class="category-btn" data-translate="competitive" data-category="cp">Competitive</button>
+    <button class="category-btn" data-translate="wingman" data-category="win">Wingman</button>
+    <button class="category-btn" data-translate="community" data-category="com">Community</button>
+    <button class="category-btn" data-translate="hostage" data-category="reh">Hostage</button>
+</div>
+<!-- Fila de Iconos de Mapas -->
+<div class="image-row no-select">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="dust" alt="dust" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="mirage" alt="mirage" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="inferno" alt="inferno" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="train" alt="train" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="ancient" alt="ancient" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="overpass" alt="overpass" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="nuke" alt="nuke" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="anubis" alt="anubis" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="vertigo" alt="vertigo" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="agency" alt="agency" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="office" alt="office" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="italy" alt="italy" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="palacio" alt="palacio" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="golden" alt="golden" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="rooftop" alt="rooftop" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="cache" alt="cache" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="cobble" alt="cobble" class="selectable" draggable="false">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tuscan" alt="tuscan" class="selectable" draggable="false">
+</div>
+<hr class="hrColor">
+<div id="info-container" class="ancho-uniforme">
+    <h2>Team Generator - Counter Strike 2</h2>
+    <p id="info_subtitle" class="subtitulo"></p>
+    <p id="mensaje" class='invisible' draggable="false"></p>
+    <hr class="hr-info">
+    <h3 id="info_how_it_works_title"></h3>
+    <ol class="lista-instrucciones">
+        <li id="info_instruction_1"></li>
+        <li id="info_instruction_2"></li>
+        <li id="info_instruction_3"></li>
+        <li id="info_instruction_4"></li>
+    </ol>
+</div>
+<p id="resulText" class='invisible'></p>
+<div id="result" class="invisible ancho-uniforme">
+    <!-- CONTENEDOR PARA LA IMAGEN DE FONDO -->
+    <div id="resultado-imagen-contenedor">
+        <img id="mapa-background-img" src="" draggable="false">
+    </div>
+    <!-- Contenedor de Animación Central -->
+    <div id="animacion-central-contenedor">
+        <!-- 1. El carrusel de mapas -->
+        <div id="mapa-carrusel-contenedor" class="mapa-carrusel-contenedor">
+            <div id="mapa-carrusel-tira" class="mapa-carrusel-tira">
+                <!-- Las imágenes de los mapas se insertarán aquí con JavaScript -->
+            </div>
+            <div class="mapa-carrusel-marcador"></div>
+        </div>
+        <!-- 2. El contenedor de la tarjeta final -->
+        <div id="resultado-tarjeta-contenedor">
+            <img id="mapa-tarjeta-img" src="" draggable="false">
+        </div>
+    </div>
+    <!-- CONTENEDOR PARA LA IMAGEN DE ICONO -->
+    <div id="resultado-icon-contenedor">
+        <img id="mapa-icon-img" src="" draggable="false">
+    </div>
+    <!-- ====> NUEVO: CONTENEDORES PARA LOS AGENTES agents/ct.png agents/tt.png<==== -->
+    <div id="agent-ct-contenedor">
+        <img id="agent-ct-img" src="" draggable="false">
+    </div>
+    <div id="agent-tt-contenedor">
+        <img id="agent-tt-img" src="" draggable="false">
+    </div>
+    <!-- Contenedor para el Icono del Equipo CT (Izquierda) -->
+    <div id="team-ct-contenedor">
+        <img id="icon-team-ct" src="" draggable="false">
+    </div>
+    <!-- Contenedor para el Icono del Equipo TT (Derecha) -->
+    <div id="team-tt-contenedor">
+        <img id="icon-team-tt" src="" draggable="false">
+    </div>
+    <!-- Contenedor para el Equipo CT (Izquierda) -->
+    <img id="img-li" src="" draggable="false">
+    <img id="img-ld" src="" draggable="false">
+    <div id="equipo-ct" class="equipo-lista">
+        <!-- Lista de jugadores del equipo -->
+        <ul id="lista-ct" class="lista-jugadores">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+        </ul>
+    </div>
+    <!-- Contenedor para el Equipo TT (Derecha) -->
+    <div id="equipo-tt" class="equipo-lista">
+        <!-- Lista de jugadores del equipo -->
+        <ul id="lista-tt" class="lista-jugadores">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+        </ul>
+    </div>
+    <div id="watermark">TeamGenerator-CS2</div>
+</div>
+<button id="btnCompartir" data-translate="share" class="boton-compartir-grande no-select invisible">SHARE</button>
+<!-- FIN DE LA SECCIÓN DE RESULTADOS -->
+<footer>Version: <span id="app-version">cargando...</span></footer>
+<script src="imagenes-data.js"></script>
+<script src="version-data.js"></script>
+<script src="translations.js"></script>
+<script src="script.js?v=1.0"></script>
+<script src="html2canvas.min.js"></script>
+</body>
+</html>
+
