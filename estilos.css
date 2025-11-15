@@ -764,7 +764,9 @@ textarea#nombres {
     visibility: hidden !important;
     pointer-events: none !important;
 }
-
+.no-mostrar {
+    display: none !important;
+}
 .no-select {
     user-select: none;
     -webkit-user-select: none;

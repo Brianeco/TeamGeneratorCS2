@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('tuscan').src = IMAGENES_DATA['icons/tuscan.png'];
 
     const infoContainer = document.getElementById('info-container');// La referencia a 'result' ya deberías tenerla. Si no, añádela:
-    const resultDiv = document.getElementById('result');
 
 
     const nombresText = document.getElementById('nombres');
@@ -651,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // =========================================================================
         if (errores.length > 0) {
             infoContainer.style.display = 'block';
-            resultadoContainer.classList.add('invisible');
+            resultadoContainer.classList.add('no-mostrar');
             mensajeError.innerHTML = errores.join('<br>');
             mensajeError.classList.remove('invisible');
             btnGenerar.disabled = false;
@@ -664,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // =========================================================================
 
         // 1. Comprobamos si es una re-generación (si el resultado ya se está mostrando)
-        const esRegeneracion = !resultadoContainer.classList.contains('invisible');
+        const esRegeneracion = !resultadoContainer.classList.contains('no-mostrar');
 
         // 2. Creamos la función que contiene el resto del proceso de generación
         const iniciarGeneracion = () => {
@@ -674,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // ====> FASE 1: PREPARACIÓN SI NO HAY ERRORES
             playSound('generate');
             infoContainer.style.display = 'none';
-            resultadoContainer.classList.remove('invisible');
+            resultadoContainer.classList.remove('no-mostrar');
 
             btnCompartir.classList.add('invisible');
             mapaBackgroundImg.src = pixel
@@ -802,7 +801,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // INICIO DE LA FUNCIÓN: limpiarResultados
     // ---------------------------------------------------------------------------------
     function limpiarResultados() {
-        resultadoContainer.classList.add('invisible');
+        resultadoContainer.classList.add('no-mostrar');
         btnCompartir.classList.add('invisible');
         detenerRuletaJugadores();
         playSound('clear');
@@ -967,7 +966,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCompartir = document.getElementById('btnCompartir');
     const btnChangeLanguage = document.getElementById('btnChangeLanguage');
     const esAppAndroid = window.Android && typeof window.Android.capturarYCompartirDiv === 'function';
-    const languageOrder = ['en', 'es', 'pt']; // Define el orden del ciclo de idiomas
+    const languageOrder = ['en', 'es', 'pt-BR', 'pt-PT', 'de', 'fr', 'it', 'pl', 'ru', 'zh-CN', 'ko', 'ja', 'tr']; // Define el orden del ciclo de idiomas
 
     // !--- NUEVA LÓGICA DE INICIALIZACIÓN DE AUDIO ---!
     // Si NO es la app de Android, preparamos el audio para la web.
