@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.75, user-scalable=no">
     <title>Team Generator - CS2</title>
     <meta name="description" content="Create random 5vs5 teams for your Counter-Strike 2 matches from a list of 10 players. The perfect tool for balanced custom games.">
+    <meta name="keywords" content="generador de equipos cs2, crear equipos cs2, hacer equipos cs2, equipos aleatorios cs2, sortear equipos cs2, mezcladora cs2, 5v5, counter-strike 2, premier, competitivo, custom game, scrim, mix, cs2 team generator, random team generator cs2, cs2 team maker, gerador de times cs2">
+    <meta http-equiv="Content-Language" content="en">
     <link rel="alternate" hreflang="en" href="https://brianeco.github.io/TeamGeneratorCS2/" />
     <link rel="alternate" hreflang="es" href="https://brianeco.github.io/TeamGeneratorCS2/" />
-    <link rel="alternate" hreflang="pt" href="https://brianeco.github.io/TeamGeneratorCS2/" />
-    <!-- Esta es una etiqueta 'catch-all'. Le dice a Google que use 'en' si el idioma del usuario no coincide con ninguno de los anteriores. -->
+    <link rel="alternate" hreflang="pt-BR" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="pt-PT" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="de" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="fr" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="it" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="pl" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="ru" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="ko" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="ja" href="https://brianeco.github.io/TeamGeneratorCS2/" />
+    <link rel="alternate" hreflang="tr" href="https://brianeco.github.io/TeamGeneratorCS2/" />
     <link rel="alternate" hreflang="x-default" href="https://brianeco.github.io/TeamGeneratorCS2/" />
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/16.png" sizes="16x16">
-    <link rel="apple-touch-icon" href="images/32.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="images/48.png" sizes="48x48">
-    <link rel="apple-touch-icon" href="images/64.png" sizes="64x64">
-    <link rel="apple-touch-icon" href="images/180.png" sizes="180x180">
+    <link rel="icon" href="images/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="images/180.png">
+    <link rel="alternate icon" href="images/favicon.ico">
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
@@ -71,7 +79,6 @@
         <li id="info_instruction_4"></li>
     </ol>
 </div>
-<p id="resulText" class='invisible'></p>
 <div id="result" class="no-mostrar ancho-uniforme">
     <!-- CONTENEDOR PARA LA IMAGEN DE FONDO -->
     <div id="resultado-imagen-contenedor">
@@ -127,10 +134,17 @@
         </ul>
     </div>
     <div id="watermark">brianeco.github.io/TeamGeneratorCS2</div>
+    <div id="discord-watermark">discord.gg/Rj8bN9SjAw</div>
 </div>
-<button id="btnCompartir" data-translate="share" class="boton-compartir-grande no-select invisible">SHARE</button>
+<div id="secondary-actions-row" class="botones-second">
+    <button id="discord-link" class="ancho-uniforme-social no-select">
+        <img src="images/discord.svg">
+        <span data-translate="join_discord">DISCORD</span>
+    </button>
+    <button id="btnCompartir" data-translate="share" class="ancho-uniforme-social no-select no-mostrar">SHARE</button>
+</div>
 <!-- FIN DE LA SECCIÓN DE RESULTADOS -->
-<footer>Version: <span id="app-version">cargando...</span></footer>
+<footer>Version: <span id="app-version">loading...</span></footer>
 <script src="imagenes-data.js"></script>
 <script src="version-data.js"></script>
 <script src="translations.js"></script>

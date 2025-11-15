@@ -1,6 +1,7 @@
 const translations = {
     // Spanish
     "es": {
+        "join_discord": "ÚNETE A LA COMUNIDAD!",
         "meta_description": "Crea equipos aleatorios 5vs5 para tus partidas de Counter-Strike 2 a partir de una lista de 10 jugadores. La herramienta perfecta para partidas personalizadas y balanceadas.",
         "generate": "GENERAR",
         "clear": "LIMPIAR",
@@ -25,10 +26,10 @@ const translations = {
         "info_instruction_3": "Haz clic en el botón <strong>GENERAR</strong>.",
         "alert_generate_first": "Primero debes generar los equipos para poder compartir.",
         "info_instruction_4": "Usa el botón <strong>COMPARTIR</strong> para copiar los equipos al portapapeles."
-
     },
     // English
     "en": {
+        "join_discord": "JOIN THE COMMUNITY!",
         "meta_description": "Create random 5vs5 teams for your Counter-Strike 2 matches from a list of 10 players. The perfect tool for balanced custom games.",
         "generate": "GENERATE",
         "clear": "CLEAR",
@@ -56,6 +57,7 @@ const translations = {
     },
     // Portuguese (Brazil)
     "pt-BR": {
+        "join_discord": "JUNTE-SE À COMUNIDADE!",
         "meta_description": "Crie equipes aleatórias 5vs5 para suas partidas de Counter-Strike 2 a partir de uma lista de 10 jogadores. A ferramenta perfeita para jogos personalizados e equilibrados.",
         "generate": "GERAR",
         "clear": "LIMPAR",

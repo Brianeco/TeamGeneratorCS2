@@ -1,0 +1,4 @@
+txt
+User-agent: *
+Allow: /
+Sitemap: https://brianeco.github.io/TeamGeneratorCS2/sitemap.xml

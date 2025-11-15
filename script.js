@@ -116,8 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let equiposFinales = { ct: [], tt: [] };
 
-    // (El resto de tus constantes y variables globales como playerColors, avataresDisponibles, etc., deben ir aquí)
-    // ...
+    const btnDiscord = document.getElementById('discord-link');
+    btnDiscord.addEventListener('click', () => {
+        window.open('https://discord.gg/Rj8bN9SjAw', '_blank');
+    });
 
     // =================================================================================
     // FIN --- CONSTANTES GLOBALES Y REFERENCIAS AL DOM
@@ -675,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
             infoContainer.style.display = 'none';
             resultadoContainer.classList.remove('no-mostrar');
 
-            btnCompartir.classList.add('invisible');
+            btnCompartir.classList.add('no-mostrar');
             mapaBackgroundImg.src = pixel
             mapaTarjetaImg.src = pixel
             mapaIconImg.src = pixel
@@ -740,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(() => {
                             teamCTContenedor.classList.add('team-icon-aparecer');
                             teamTTContenedor.classList.add('team-icon-aparecer');
-                            btnCompartir.classList.remove('invisible');
+                            btnCompartir.classList.remove('no-mostrar');
                             btnLimpiar.disabled = false;
                             btnGenerar.disabled = false;
                         }, 500);
@@ -802,7 +804,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------------------------------
     function limpiarResultados() {
         resultadoContainer.classList.add('no-mostrar');
-        btnCompartir.classList.add('invisible');
+        btnCompartir.classList.add('no-mostrar');
         detenerRuletaJugadores();
         playSound('clear');
         infoContainer.style.display = 'block';
@@ -1053,17 +1055,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // 2. Determinar el idioma inicial para la web
-        const preferredLanguage = localStorage.getItem('preferredLanguage'); // <-- LLAMADA PROTEGIDA
-        const browserLang = navigator.language.split('-')[0];
-        let initialLanguage = 'en';
+        const preferredLanguage = localStorage.getItem('preferredLanguage');
+        const fullBrowserLang = navigator.language; // ej: 'pt-BR', 'es-ES'
+        const prefixBrowserLang = fullBrowserLang.split('-')[0]; // ej: 'pt', 'es'
+        let initialLanguage = 'en'; // Fallback por defecto
 
         if (preferredLanguage && translations[preferredLanguage]) {
             initialLanguage = preferredLanguage;
-        } else if (translations[browserLang]) {
-            initialLanguage = browserLang;
+        } else if (translations[fullBrowserLang]) { // Prioridad 1: Comprobar código completo (pt-BR)
+            initialLanguage = fullBrowserLang;
+        } else if (translations[prefixBrowserLang]) { // Prioridad 2: Comprobar prefijo (es, fr, de...)
+            initialLanguage = prefixBrowserLang;
         }
         // Aplica el idioma solo en la web; en Android, la app lo hará explícitamente.
         changeLanguage(initialLanguage);
+
     }
 
     // --- Inicialización final de la UI ---
@@ -1137,5 +1143,15 @@ function changeLanguage(languageCode) {
     const btnCompartir = document.getElementById('btnCompartir');
     if (!btnCompartir.classList.contains('invisible') && !btnCompartir.disabled) {
         btnCompartir.innerHTML = dictionary.share;
+    }
+    const btnDiscord = document.getElementById('discord-link');
+    if (btnDiscord) {
+        const langPrefix = languageCode.split('-')[0];
+        // Mostramos el botón de Discord si el idioma es español, inglés o portugués
+        if (languageCode === 'es' || languageCode === 'en' || languageCode.toLowerCase() === 'pt-br') {
+            btnDiscord.classList.remove('no-mostrar');
+        } else {
+            btnDiscord.classList.add('no-mostrar');
+        }
     }
 }
