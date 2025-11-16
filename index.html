@@ -9,7 +9,15 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
+        let page_location = 'https://brianeco.github.io/TeamGeneratorCS2/';
+        let page_path = '/';
+        if (typeof Android !== 'undefined' && typeof Android.getAppVersionName === 'function') {
+            page_location = 'app://com.brianeco.teamgenerator';
+            page_path = '/main_screen';
+            console.log("Analytics: Ejecutando en modo App Android");
+        } else {
+            console.log("Analytics: Ejecutando en modo Web");
+        }
         gtag('config', 'G-43C92Z87R5');
     </script>
     <meta name="description" content="Create random 5vs5 teams for your Counter-Strike 2 matches from a list of 10 players. The perfect tool for balanced custom games.">
