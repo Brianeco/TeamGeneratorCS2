@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.75, user-scalable=no">
     <title>Team Generator - CS2</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-43C92Z87R5"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -45,6 +44,7 @@
 <body>
 <img class="imgLogo no-select" src="images/logo.svg" alt="Logo" draggable="false">
 <button id="btnChangeLanguage" class="language-button invisible"></button>
+<label for="nombres" class="sr-only" data-translate="player_placeholder_label">Player Names</label>
 <textarea id="nombres" class="ancho-uniforme no-select mintextnombres" data-translate-placeholder="jugadores_placeholder" placeholder="Enter player names separated by commas..."></textarea>
 <div class="botones">
     <button id="btnGenerar" data-translate="generate" class="ancho-uniforme-boton no-select">GENERATE</button>
@@ -98,7 +98,7 @@
 <div id="result" class="no-mostrar ancho-uniforme">
     <!-- CONTENEDOR PARA LA IMAGEN DE FONDO -->
     <div id="resultado-imagen-contenedor">
-        <img id="mapa-background-img" src="" draggable="false">
+        <img id="mapa-background-img" src="" draggable="false" alt="">
     </div>
     <!-- Contenedor de Animación Central -->
     <div id="animacion-central-contenedor">
@@ -111,31 +111,31 @@
         </div>
         <!-- 2. El contenedor de la tarjeta final -->
         <div id="resultado-tarjeta-contenedor">
-            <img id="mapa-tarjeta-img" src="" draggable="false">
+            <img id="mapa-tarjeta-img" src="" draggable="false" alt="">
         </div>
     </div>
     <!-- CONTENEDOR PARA LA IMAGEN DE ICONO -->
     <div id="resultado-icon-contenedor">
-        <img id="mapa-icon-img" src="" draggable="false">
+        <img id="mapa-icon-img" src="" draggable="false" alt="">
     </div>
     <!-- ====> NUEVO: CONTENEDORES PARA LOS AGENTES agents/ct.png agents/tt.png<==== -->
     <div id="agent-ct-contenedor">
-        <img id="agent-ct-img" src="" draggable="false">
+        <img id="agent-ct-img" src="" draggable="false" alt="">
     </div>
     <div id="agent-tt-contenedor">
-        <img id="agent-tt-img" src="" draggable="false">
+        <img id="agent-tt-img" src="" draggable="false" alt="">
     </div>
     <!-- Contenedor para el Icono del Equipo CT (Izquierda) -->
     <div id="team-ct-contenedor">
-        <img id="icon-team-ct" src="" draggable="false">
+        <img id="icon-team-ct" src="" draggable="false" alt="">
     </div>
     <!-- Contenedor para el Icono del Equipo TT (Derecha) -->
     <div id="team-tt-contenedor">
-        <img id="icon-team-tt" src="" draggable="false">
+        <img id="icon-team-tt" src="" draggable="false" alt="">
     </div>
     <!-- Contenedor para el Equipo CT (Izquierda) -->
-    <img id="img-li" src="" draggable="false">
-    <img id="img-ld" src="" draggable="false">
+    <img id="img-li" src="" draggable="false" alt="">
+    <img id="img-ld" src="" draggable="false" alt="">
     <div id="equipo-ct" class="equipo-lista">
         <!-- Lista de jugadores del equipo -->
         <ul id="lista-ct" class="lista-jugadores">
@@ -154,8 +154,8 @@
 </div>
 <div id="secondary-actions-row" class="botones-second">
     <button id="discord-link" class="ancho-uniforme-social no-select">
-        <img src="images/discord.svg">
-        <span data-translate="join_discord">DISCORD</span>
+        <img src="images/discord.svg" alt="">
+        <span data-translate="join_discord">JOIN</span>
     </button>
     <button id="btnCompartir" data-translate="share" class="ancho-uniforme-social no-select no-mostrar">SHARE</button>
 </div>

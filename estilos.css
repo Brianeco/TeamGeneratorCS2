@@ -39,7 +39,17 @@ body {
     -ms-user-select: none;     /* Para Internet Explorer/Edge */
     user-select: none;         /* Estándar */
 }
-
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 /* --- INICIO: Forzar la herencia de la fuente en todos los elementos --- */
 * {
     font-family: inherit;
@@ -111,13 +121,10 @@ textarea#nombres {
     justify-content: center; /* Centra el contenido horizontalmente */
     gap: 10px;               /* Añade el mismo espacio que los botones de arriba */
 }
-#secondary-actions-row:has(.ancho-uniforme-social:not(.no-mostrar) + .ancho-uniforme-social:not(.no-mostra)) .ancho-uniforme-social {
-    flex: 1; /* <-- ¡La Magia! Hace que los botones crezcan y compartan el espacio */
-    max-width: 400px;
-}
 
 .ancho-uniforme-social {
-    flex: 1;
+    max-width: calc(50% - 5px);
+    display: flex;
     padding: 10px;
     margin-bottom: 10px;
     border: 2px solid #555;
@@ -133,6 +140,8 @@ textarea#nombres {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    flex-grow: 1;
+    flex-basis: 0;
 }
 .ancho-uniforme-social:active {
     border-color: #55da1e;
@@ -967,7 +976,7 @@ footer {
 }
 
 #info-container h2 {
-    margin-top: 0;
+    margin-top: 10;
     color: #119e58; /* Color verde principal para consistencia */
     font-size: 24px;
 }
@@ -993,7 +1002,7 @@ footer {
 
 .lista-instrucciones {
     list-style-position: inside; /* Pone los números dentro del bloque */
-    text-align: left; /* Alinea el texto de las instrucciones a la izquierda */
+    text-align: center; /* Alinea el texto de las instrucciones al centro */
     display: inline-block; /* Permite centrar el bloque de la lista */
     padding-left: 0;
 }
