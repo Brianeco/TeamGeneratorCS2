@@ -6,27 +6,37 @@
     <title>Team Generator - CS2</title>
     <!-- =================== POSTHOG ANALYTICS =================== -->
     <script>
-        function iniciarAnalitica(clientId) {
+        function iniciarAnalitica(clientId, isWeb) {
             console.log("[PostHog] Iniciando analítica...");
-
-            // 1. Cargar la librería de PostHog (código de su web)
             !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p=t.createElement("script"),p.type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 
-            // 2. Configurar PostHog con TU API Key
             posthog.init('phc_7DMmQ6pZ3YcvRy3nyX90MkImizaC2jz5AQ1u3Hq65zR', {
                 api_host: 'https://app.posthog.com',
-                // Usamos 'loaded' para asegurarnos de que todo se ejecuta cuando la librería está lista
                 loaded: function(posthog) {
-                    // 3. Asociamos al usuario con el Client ID que nos pasó Kotlin
                     posthog.identify(clientId);
                     console.log("[PostHog] Usuario identificado con ID:", clientId);
 
-                    // 4. Capturamos nuestro evento personalizado de "app abierta"
-                    posthog.capture('app_opened', {
-                        screen_name: 'main_screen',
-                        platform: 'Android' // Podemos añadir propiedades útiles
-                    });
-                    console.log("[PostHog] Evento 'app_opened' enviado.");
+                    const eventName = isWeb ? 'WebPage' : 'AppAndroid';
+                    const platformValue = isWeb ? 'Web' : 'Android';
+                    const userLanguage = localStorage.getItem('selectedLanguage') || navigator.language.split('-')[0];
+
+                    let eventProperties = {
+                        platform: platformValue,
+                        language_at_open: userLanguage
+                    };
+
+                    if (!isWeb && window.Android && typeof window.Android.getDeviceModel === 'function') {
+                        try {
+                            const deviceModel = window.Android.getDeviceModel();
+                            eventProperties.device_model = deviceModel;
+                            console.log("[PostHog] Modelo del dispositivo obtenido:", deviceModel);
+                        } catch (e) {
+                            console.error("Error al obtener el modelo del dispositivo desde Kotlin:", e);
+                        }
+                    }
+
+                    posthog.capture(eventName, eventProperties);
+                    console.log(`[PostHog] Evento '${eventName}' enviado con propiedades:`, eventProperties);
                 }
             });
         }

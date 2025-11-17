@@ -1007,7 +1007,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Iniciamos la analítica con el ID (nuevo o recuperado)
-        iniciarAnalitica(webClientId);
+        iniciarAnalitica(webClientId), true;
     }
 
     // =======================================================
