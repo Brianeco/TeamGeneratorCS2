@@ -967,7 +967,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnLimpiar = document.getElementById('btnLimpiar');
     const btnCompartir = document.getElementById('btnCompartir');
     const btnChangeLanguage = document.getElementById('btnChangeLanguage');
-    const esAppAndroid = window.Android && typeof window.Android.capturarYCompartirDiv === 'function';
+    const esAppAndroid = (window.Android && typeof window.Android.capturarYCompartirDiv === 'function') || window.location.href.startsWith('file:///android_asset/');
+
+    // =======================================================
+    // INICIO --- INICIALIZACIÓN DE ANALÍTICA HÍBRIDA (POSTHOG)
+    // =======================================================
+
+    const esEntornoAndroidApp = /AndroidApp/i.test(navigator.userAgent);
+
+    // --- Lógica para el entorno de la App Android ---
+    if (esEntornoAndroidApp) {
+        function esperarInterfazDeAnalitica(intentos = 0) {
+            if (window.Android && typeof window.Android.iniciarAnaliticaDesdeKotlin === 'function') {
+                console.log("[JS-Analytics] Entorno Android. Pidiendo a Kotlin que inicie PostHog.");
+                window.Android.iniciarAnaliticaDesdeKotlin();
+                return;
+            }
+            if (intentos >= 10) {
+                console.error("[JS-Analytics] La interfaz `iniciarAnaliticaDesdeKotlin` no fue detectada.");
+                return;
+            }
+            setTimeout(() => esperarInterfazDeAnalitica(intentos + 1), 100);
+        }
+        esperarInterfazDeAnalitica();
+
+    // --- Lógica para el entorno Web (GitHub Pages, etc.) ---
+    } else {
+        console.log("[JS-Analytics] Entorno Web detectado. Gestionando Client ID para PostHog.");
+        let webClientId = localStorage.getItem('posthog_web_client_id');
+
+        if (!webClientId) {
+            // Si no hay ID, creamos uno nuevo y lo guardamos
+            webClientId = 'web-' + Date.now() + '-' + Math.random().toString(36).substring(2, 11);
+            localStorage.setItem('posthog_web_client_id', webClientId);
+            console.log("[JS-Analytics] Nuevo Client ID web creado y guardado:", webClientId);
+        } else {
+            // Si ya existía un ID, lo reutilizamos
+            console.log("[JS-Analytics] Client ID web recuperado:", webClientId);
+        }
+
+        // Iniciamos la analítica con el ID (nuevo o recuperado)
+        iniciarAnalitica(webClientId);
+    }
+
+    // =======================================================
+    // FIN --- INICIALIZACIÓN DE ANALÍTICA HÍBRIDA
+    // =======================================================
+
+
     const languageOrder = ['en', 'es', 'pt-BR', 'pt-PT', 'de', 'fr', 'it', 'pl', 'ru', 'zh-CN', 'ko', 'ja', 'tr']; // Define el orden del ciclo de idiomas
 
     // !--- NUEVA LÓGICA DE INICIALIZACIÓN DE AUDIO ---!
