@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { min: 15000, max: 19999, color: '#bb6dfb', imagen: 'bb6dfbff.png' },
         { min: 20000, max: 24999, color: '#e017ef', imagen: 'e017efff.png' },
         { min: 25000, max: 29999, color: '#e84a4b', imagen: 'e84a4bff.png' },
-        { min: 30000, max: 35000, color: '#fed607', imagen: 'fed607ff.png' }
+        { min: 30000, max: 36000, color: '#fed607', imagen: 'fed607ff.png' }
     ].map(rango => ({
         ...rango, // 1. Copia todas las propiedades existentes (min, max, color, imagen)
         // 2. Sobrescribe la propiedad 'imagen' con el Data URI completo
@@ -599,13 +599,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // INICIO DE LA FUNCIÓN: generarEquipos
     // ---------------------------------------------------------------------------------
 
-
-    // REEMPLAZA TU FUNCIÓN generarEquipos CON ESTA VERSIÓN COMPLETA
-
     function generarEquipos() {
         // =====================================================================
         // ====> FASE 0.1: BLOQUEO Y RESETEO INICIAL ROBUSTO
         // =====================================================================
+
+        const idiomaActual = document.documentElement.lang || 'en';
+        const diccionario = translations[idiomaActual];
+        let errores = [];
         btnGenerar.disabled = true;
         btnLimpiar.disabled = true;
         detenerRuletaJugadores();
@@ -616,10 +617,51 @@ document.addEventListener('DOMContentLoaded', () => {
         // =========================================================================
         // ====> FASE 0.2: VALIDACIÓN DE DATOS (Tu código, intacto)
         // =========================================================================
-        const idiomaActual = document.documentElement.lang || 'en';
-        const diccionario = translations[idiomaActual];
-        let errores = [];
-        const nombresArray = nombresText.value.split(',').map(n => n.trim()).filter(n => n);
+        const jugadoresSimples = procesarJugadoresDesdeTextarea(diccionario, errores); // 1. Obtenemos {name, skill} a partir del input
+
+        // 2. DECIDIMOS LA ESTRATEGIA BASÁNDONOS EN EL INPUT ORIGINAL
+        const necesitaBalanceo = jugadoresSimples.some(jugador => jugador.skill > 0);
+
+        // 3. AHORA SÍ, ENRIQUECEMOS Y DECORAMOS LOS OBJETOS PARA LA VISUALIZACIÓN
+        const jugadores = jugadoresSimples.map((jugadorSimple, index) => {
+
+            let skillFinal = jugadorSimple.skill;
+
+            // Si NO se necesita balanceo Y el skill es 0, le damos uno aleatorio para la parte divertida.
+            if (!necesitaBalanceo && skillFinal === 0) {
+                const numeroDeRangos = rangosInfo.length;
+                // 2. Generamos un índice aleatorio, desde 0 ("Sin Rango") hasta el último rango disponible.
+                const indiceRangoAleatorio = Math.floor(Math.random() * numeroDeRangos);
+                // 3. Obtenemos la información del rango elegido.
+                const rangoElegido = rangosInfo[indiceRangoAleatorio];
+                // 4. Si el rango elegido NO es el "Sin Rango", le asignamos un skill aleatorio
+                // que esté DENTRO de los límites (min/max) que tú definiste.
+                if (rangoElegido.min > 0) {
+                    skillFinal = Math.floor(Math.random() * (rangoElegido.max - rangoElegido.min + 1)) + rangoElegido.min;
+                }
+            }
+
+            const infoRango = obtenerInfoRango(skillFinal);
+
+            return {
+                name: jugadorSimple.name,
+                skill: skillFinal,
+                nombre: jugadorSimple.name,
+                avatar: obtenerAvatarAleatorio(),
+                color: playerColors[index % playerColors.length],
+                rango: {
+                    numero: skillFinal,
+                    info: infoRango
+                }
+            };
+        });
+
+        // El resto del código de validación (de 10 jugadores, duplicados, etc.) sigue aquí debajo...
+        // const idiomaActual = ...
+
+
+
+        const nombresArray = jugadores.map(j => j.name);
         const numeroNombres = nombresArray.length;
 
         if (numeroNombres !== 10) {
@@ -693,9 +735,21 @@ document.addEventListener('DOMContentLoaded', () => {
             mapaCarruselContenedor.classList.remove('invisible');
 
             avataresParaAsignar = [...avataresDisponibles];
-            const jugadoresMezclados = crearJugadoresMezclados(nombresArray);
-            equiposFinales.ct = jugadoresMezclados.slice(0, 5);
-            equiposFinales.tt = jugadoresMezclados.slice(5, 10);
+            // CÓDIGO DE REEMPLAZO DENTRO DE iniciarGeneracion()
+            if (necesitaBalanceo) {
+                console.log("[Balanceador] Estrategia: BALANCEO POR HABILIDAD");
+                const equiposBalanceados = balancearEquipos(jugadores);
+                equiposFinales.ct = equiposBalanceados.equipo1; // Directamente, sin .map ni .find
+                equiposFinales.tt = equiposBalanceados.equipo2; // Directamente, sin .map ni .find
+            } else {
+                console.log("[Balanceador] Estrategia: SORTEO ALEATORIO");
+                const jugadoresMezclados = shuffle(jugadores);
+                // Tu lógica original de 5 y 5 para el sorteo aleatorio
+                equiposFinales.ct = jugadoresMezclados.slice(0, 5);
+                equiposFinales.tt = jugadoresMezclados.slice(5, 10);
+            }
+
+
 
             iniciarRuletaJugadores(equipoCT, nombresArray);
             iniciarRuletaJugadores(equipoTT, nombresArray);
@@ -773,8 +827,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // =========================================================================
     }
 
-
-
+    function shuffle(array) {
+        let newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    }
     // ---------------------------------------------------------------------------------
     // FIN DE LA FUNCIÓN: generarEquipos
     // ---------------------------------------------------------------------------------
@@ -956,6 +1016,152 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------------------------------
     // FIN DE LA FUNCIÓN: handleClicMapa
     // ---------------------------------------------------------------------------------
+
+
+
+
+
+    // =========================================================================
+    // INICIO --- NUEVA LÓGICA DE BALANCEO DE EQUIPOS
+    // =========================================================================
+
+    /**
+     * Procesa el contenido del textarea y añade errores al array si los encuentra.
+     * @param {object} diccionario - El objeto de traducciones para el idioma actual.
+     * @param {Array<string>} errores - El array donde se añadirán los mensajes de error.
+     * @returns {Array<{name: string, skill: number}>} Un array de jugadores.
+     */
+    function procesarJugadoresDesdeTextarea(diccionario, errores) {
+        const nombresTextarea = document.getElementById('nombres');
+        const textoCompleto = nombresTextarea.value.trim();
+        const jugadores = [];
+
+        if (!textoCompleto) {
+            return [];
+        }
+
+        const partesCrudas = textoCompleto.split(',');
+        const jugadoresPotenciales = [];
+        let i = 0;
+
+        while (i < partesCrudas.length) {
+            let parteActual = partesCrudas[i].trim();
+            if (i + 1 < partesCrudas.length && /^\d+$/.test(partesCrudas[i + 1].trim())) {
+                 parteActual += "," + partesCrudas[i + 1].trim();
+                 i++;
+            }
+            jugadoresPotenciales.push(parteActual);
+            i++;
+        }
+
+        jugadoresPotenciales.forEach(lineaLimpia => {
+            if (lineaLimpia === '') return;
+
+            let nombre = lineaLimpia;
+            let skill = 0;
+
+            const separadorIndex = lineaLimpia.search(/[:;]/);
+
+            if (separadorIndex !== -1) {
+                nombre = lineaLimpia.substring(0, separadorIndex).trim();
+                let rangoStr = lineaLimpia.substring(separadorIndex + 1).trim();
+
+                if (nombre && rangoStr) {
+                    const soloDigitos = rangoStr.replace(/\D/g, '');
+                    if (soloDigitos.length > 0) {
+                        const rangoNumValidacion = parseInt(soloDigitos, 10);
+
+                        // --- ¡AQUÍ ESTÁ TU LÓGICA DE VALIDACIÓN! ---
+                        if (rangoNumValidacion > 35) {
+                            const mensaje = diccionario.error_rank_too_high.replace('{nombre}', `'${nombre}'`);
+                            if (!errores.includes(mensaje)) {
+                                errores.push(mensaje); // Añadimos el error al array que nos pasaron
+                            }
+                        }
+                        // --- FIN DE LA VALIDACIÓN ---
+
+                        const rangoFinalStr = soloDigitos.substring(0, 2);
+                        const rangoFinalNum = parseInt(rangoFinalStr, 10);
+
+                        const minSkill = rangoFinalNum * 1000;
+                        const maxSkill = minSkill + 999;
+                        skill = Math.floor(Math.random() * (maxSkill - minSkill + 1)) + minSkill;
+                    }
+                }
+            }
+
+            // Verificación de duplicados
+            const nombreEnMinusculas = nombre.toLowerCase();
+            if (jugadores.some(j => j.name.toLowerCase() === nombreEnMinusculas)) {
+                 if (!errores.includes(diccionario.error_duplicates)) {
+                    errores.push(diccionario.error_duplicates);
+                 }
+            }
+
+            jugadores.push({ name: nombre, skill: skill });
+        });
+
+        console.log("[Balanceador] Jugadores procesados:", jugadores);
+        return jugadores;
+    }
+
+
+
+
+
+    // =========================================================================
+    // FIN --- NUEVA LÓGICA DE BALANCEO DE EQUIPOS
+    // =========================================================================
+
+
+    // ... aquí está la función procesarJugadoresDesdeTextarea() que ya tienes ...
+
+    /**
+     * Algoritmo de balanceo de equipos.
+     * Ordena a los jugadores por habilidad y los distribuye uno a uno* en el equipo con la menor suma de habilidad total.
+     * @param {Array<{name: string, skill: number}>} jugadores - El array de objetos de jugador.
+     * @returns {{equipo1: Array<string>, equipo2: Array<string>}} Objeto con los dos equipos balanceados.
+     */
+    // =========================================================================
+    // ====> FUNCIÓN balancearEquipos (VERSIÓN FINAL Y CORRECTA)
+    // =========================================================================
+    function balancearEquipos(jugadores) {
+        // 1. Creamos una COPIA y la ordenamos de MAYOR a MENOR habilidad.
+        const jugadoresOrdenados = [...jugadores].sort((a, b) => b.skill - a.skill);
+
+        const equipo1 = [];
+        const equipo2 = [];
+
+        // 2. Distribuimos usando el patrón "ABBA" para garantizar 5 vs 5
+        // Este patrón asegura un balance excelente y siempre el mismo número de jugadores.
+        // A, B, B, A, A, B, B, A, A, B
+        // 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 (índices del array ordenado)
+        equipo1.push(jugadoresOrdenados[0]); // A
+        equipo2.push(jugadoresOrdenados[1]); // B
+        equipo2.push(jugadoresOrdenados[2]); // B
+        equipo1.push(jugadoresOrdenados[3]); // A
+        equipo1.push(jugadoresOrdenados[4]); // A
+        equipo2.push(jugadoresOrdenados[5]); // B
+        equipo2.push(jugadoresOrdenados[6]); // B
+        equipo1.push(jugadoresOrdenados[7]); // A
+        equipo1.push(jugadoresOrdenados[8]); // A
+        equipo2.push(jugadoresOrdenados[9]); // B
+
+        // Opcional: Para verificar los skill totales en consola.
+        const skillEquipo1 = equipo1.reduce((total, p) => total + p.skill, 0);
+        const skillEquipo2 = equipo2.reduce((total, p) => total + p.skill, 0);
+        console.log(`[Balanceador ABBA] Equipos balanceados. Skill T1: ${skillEquipo1}, Skill T2: ${skillEquipo2}`);
+
+        return { equipo1, equipo2 };
+    }
+
+
+
+    // =========================================================================
+    // FIN --- NUEVA LÓGICA DE BALANCEO DE EQUIPOS
+    // =========================================================================
+
+
 
     // =================================================================================
     // ASIGNACIÓN DE EVENT LISTENERS Y EJECUCIÓN INICIAL
@@ -1179,6 +1385,8 @@ function changeLanguage(languageCode) {
     document.getElementById('info_instruction_2').innerHTML = dictionary.info_instruction_2;
     document.getElementById('info_instruction_3').innerHTML = dictionary.info_instruction_3;
     document.getElementById('info_instruction_4').innerHTML = dictionary.info_instruction_4;
+    document.getElementById('info_instruction_5').innerHTML = dictionary.info_instruction_5;
+    document.getElementById('info_instruction_6').innerHTML = dictionary.info_instruction_6;
 
     // Guarda la preferencia para futuras visitas (SOLO SI NO ES ANDROID)
     const esAppAndroid = window.Android && typeof window.Android.capturarYCompartirDiv === 'function';

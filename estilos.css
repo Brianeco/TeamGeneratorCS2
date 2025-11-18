@@ -289,6 +289,10 @@ textarea#nombres {
     margin-bottom: 20px;    /* Separa el error de la línea <hr> */
     text-align: center;
 }
+.text-danger {
+    color: #e74c3c; /* Un tono de rojo claro y legible */
+    font-weight: 600; /* Hacemos el texto un poco más grueso para que destaque */
+}
 /*
   ================================================================
   FIN --- Selección de mensaje de error
@@ -1004,7 +1008,8 @@ footer {
     list-style-position: inside; /* Pone los números dentro del bloque */
     text-align: center; /* Alinea el texto de las instrucciones al centro */
     display: inline-block; /* Permite centrar el bloque de la lista */
-    padding-left: 0;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .lista-instrucciones li {

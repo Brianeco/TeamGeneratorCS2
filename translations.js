@@ -1,9 +1,10 @@
 const translations = {
     // Spanish
     "es": {
+        "error_rank_too_high": "El rango de {nombre} es inválido. Ingresa solo números enteros (ej: 24).",
         "player_placeholder_label": "Nombres de los Jugadores",
         "join_discord": "ÚNETE",
-        "meta_description": "Crea equipos aleatorios 5vs5 para tus partidas de Counter-Strike 2 a partir de una lista de 10 jugadores. La herramienta perfecta para partidas personalizadas con equipos aleatorios.",
+        "meta_description": "Crea equipos aleatorios 5vs5 para tus partidas de Counter-Strike 2 a partir de una lista de 10 jugadores. La herramienta perfecta para partidas personalizadas y balanceadas.",
         "generate": "GENERAR",
         "clear": "LIMPIAR",
         "share": "COMPARTIR",
@@ -23,16 +24,19 @@ const translations = {
         "info_subtitle": "Crea equipos aleatorios para tus partidas de 5vs5 a partir de una lista de 10 jugadores.",
         "info_how_it_works_title": "¿Cómo funciona?",
         "info_instruction_1": "Ingresa 10 nombres de jugadores en el campo de texto, separados por comas.",
-        "info_instruction_2": "Selecciona los mapas que quieres jugar o deja la selección por defecto.",
-        "info_instruction_3": "Haz clic en el botón <strong>GENERAR</strong>.",
-        "alert_generate_first": "Primero debes generar los equipos para poder compartir.",
-        "info_instruction_4": "Usa el botón <strong>COMPARTIR</strong> para copiar los equipos al portapapeles."
+        "info_instruction_2": "Para equipos balanceados, especifica el rango de cada jugador después de su nombre separado por (;) o (:). <span class='text-danger'>Solo necesitas introducir el número entero. Por ejemplo, para 24.886 de rango: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Si no especificas rangos, los equipos se sortearán de forma 100% aleatoria.",
+        "info_instruction_4": "Selecciona los mapas que quieres jugar o deja la selección por defecto.",
+        "info_instruction_5": "¡Presiona el botón <strong>GENERAR</strong> y que comience la partida!",
+        "info_instruction_6": "Usa el botón <strong>COMPARTIR</strong> para copiar los equipos al portapapeles.",
+        "alert_generate_first": "Primero debes generar los equipos para poder compartir."
     },
     // English
     "en": {
+        "error_rank_too_high": "The rank for {nombre} is invalid. Enter only whole numbers (e.g., 24).",
         "player_placeholder_label": "Player Names",
         "join_discord": "JOIN",
-        "meta_description": "Create random 5vs5 teams for your Counter-Strike 2 matches from a list of 10 players. The perfect tool for custom games with random teams.",
+        "meta_description": "Create random 5vs5 teams for your Counter-Strike 2 matches from a list of 10 players. The perfect tool for custom and balanced matches.",
         "generate": "GENERATE",
         "clear": "CLEAR",
         "share": "SHARE",
@@ -52,16 +56,19 @@ const translations = {
         "info_subtitle": "Create random teams for your 5v5 matches from a list of 10 players.",
         "info_how_it_works_title": "How does it work?",
         "info_instruction_1": "Enter 10 player names in the text field, separated by commas.",
-        "info_instruction_2": "Select the maps you want to play or leave the default selection.",
-        "info_instruction_3": "Click the <strong>GENERATE</strong> button.",
-        "alert_generate_first": "You must generate the teams first to be able to share.",
-        "info_instruction_4": "Use the <strong>SHARE</strong> button to copy the teams to your clipboard."
+        "info_instruction_2": "For balanced teams, specify each player's rank after their name separated by (;) or (:). <span class='text-danger'>You only need to enter the whole number. For example, for a rank of 24,886: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "If you don't specify ranks, the teams will be sorted 100% randomly.",
+        "info_instruction_4": "Select the maps you want to play or leave the default selection.",
+        "info_instruction_5": "Press the <strong>GENERATE</strong> button and let the match begin!",
+        "info_instruction_6": "Use the <strong>SHARE</strong> button to copy the teams to your clipboard.",
+        "alert_generate_first": "You must generate the teams first to be able to share."
     },
     // Portuguese (Brazil)
     "pt-BR": {
+        "error_rank_too_high": "O rank de {nome} é inválido. Insira apenas números inteiros (ex: 24).",
         "player_placeholder_label": "Nomes dos Jogadores",
         "join_discord": "ENTRAR",
-        "meta_description": "Crie equipes aleatórias 5vs5 para suas partidas de Counter-Strike 2 a partir de uma lista de 10 jogadores. A ferramenta perfeita para jogos personalizados com equipes aleatórias.",
+        "meta_description": "Crie equipes aleatórias 5vs5 para suas partidas de Counter-Strike 2 a partir de uma lista de 10 jogadores. A ferramenta perfeita para partidas personalizadas e balanceadas.",
         "generate": "GERAR",
         "clear": "LIMPAR",
         "share": "COMPARTILHAR",
@@ -81,16 +88,19 @@ const translations = {
         "info_subtitle": "Crie equipes aleatórias para suas partidas 5v5 a partir de uma lista de 10 jogadores.",
         "info_how_it_works_title": "Como funciona?",
         "info_instruction_1": "Digite 10 nomes de jogadores no campo de texto, separados por vírgulas.",
-        "info_instruction_2": "Selecione os mapas que você quer jogar ou deixe a seleção padrão.",
-        "info_instruction_3": "Clique no botão <strong>GERAR</strong>.",
-        "alert_generate_first": "Você deve primeiro gerar as equipes para poder compartilhar.",
-        "info_instruction_4": "Use o botão <strong>COMPARTILHAR</strong> para copiar as equipes para a área de transferência."
+        "info_instruction_2": "Para equipes balanceadas, especifique o rank de cada jogador após o nome, separado por (;) ou (:). <span class='text-danger'>Você só precisa digitar o número inteiro. Por exemplo, para um rank de 24.886: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Se você não especificar os ranks, as equipes serão sorteadas de forma 100% aleatória.",
+        "info_instruction_4": "Selecione os mapas que você quer jogar ou deixe a seleção padrão.",
+        "info_instruction_5": "Pressione o botão <strong>GERAR</strong> e que comece a partida!",
+        "info_instruction_6": "Use o botão <strong>COMPARTILHAR</strong> para copiar as equipes para a área de transferência.",
+        "alert_generate_first": "Você deve primeiro gerar as equipes para poder compartilhar."
     },
     // Portuguese (Portugal)
     "pt-PT": {
+        "error_rank_too_high": "O rank de {nome} é inválido. Introduza apenas números inteiros (ex: 24).",
         "player_placeholder_label": "Nomes dos Jogadores",
         "join_discord": "ENTRAR",
-        "meta_description": "Crie equipas aleatórias 5vs5 para os seus jogos de Counter-Strike 2 a partir de uma lista de 10 jogadores. A ferramenta perfeita para jogos personalizados com equipas aleatórias.",
+        "meta_description": "Crie equipas aleatórias 5vs5 para os seus jogos de Counter-Strike 2 a partir de uma lista de 10 jogadores. A ferramenta perfeita para jogos personalizados e equilibrados.",
         "generate": "GERAR",
         "clear": "LIMPAR",
         "share": "PARTILHAR",
@@ -110,16 +120,19 @@ const translations = {
         "info_subtitle": "Crie equipas aleatórias para os seus jogos 5v5 a partir de uma lista de 10 jogadores.",
         "info_how_it_works_title": "Como funciona?",
         "info_instruction_1": "Insira 10 nomes de jogadores no campo de texto, separados por vírgulas.",
-        "info_instruction_2": "Selecione os mapas que quer jogar ou deixe a seleção padrão.",
-        "info_instruction_3": "Clique no botão <strong>GERAR</strong>.",
-        "alert_generate_first": "Tem de gerar primeiro as equipas para poder partilhar.",
-        "info_instruction_4": "Use o botão <strong>PARTILHAR</strong> para copiar as equipas para a área de transferências."
+        "info_instruction_2": "Para equipas equilibradas, especifique o rank de cada jogador após o nome, separado por (;) ou (:). <span class='text-danger'>Só precisa de introduzir o número inteiro. Por exemplo, para um rank de24.886: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Se não especificar os ranks, as equipas serão sorteadas de forma 100% aleatória.",
+        "info_instruction_4": "Selecione os mapas que quer jogar ou deixe a seleção padrão.",
+        "info_instruction_5": "Pressione o botão <strong>GERAR</strong> e que comece a partida!",
+        "info_instruction_6": "Use o botão <strong>PARTILHAR</strong> para copiar as equipas para a área de transferências.",
+        "alert_generate_first": "Tem de gerar primeiro as equipas para poder partilhar."
     },
     // German
     "de": {
+        "error_rank_too_high": "Der Rang von {nombre} ist ungültig. Geben Sie nur ganze Zahlen ein (z.B. 24).",
         "player_placeholder_label": "Spielernamen",
         "join_discord": "BEITRETEN",
-        "meta_description": "Erstellen Sie zufällige 5vs5-Teams für Ihre Counter-Strike 2-Matches aus einer Liste von 10 Spielern. Das perfekte Werkzeug für benutzerdefinierte Spiele mit zufälligen Teams.",
+        "meta_description": "Erstellen Sie zufällige 5vs5-Teams für Ihre Counter-Strike 2-Matches aus einer Liste von 10 Spielern. Das perfekte Werkzeug für benutzerdefinierte und ausgewogene Spiele.",
         "generate": "ERSTELLEN",
         "clear": "LÖSCHEN",
         "share": "TEILEN",
@@ -139,16 +152,19 @@ const translations = {
         "info_subtitle": "Erstellen Sie zufällige Teams für Ihre 5v5-Matches aus einer Liste von 10 Spielern.",
         "info_how_it_works_title": "Wie funktioniert es?",
         "info_instruction_1": "Geben Sie 10 Spielernamen durch Kommas getrennt in das Textfeld ein.",
-        "info_instruction_2": "Wählen Sie die Karten aus, die Sie spielen möchten, oder behalten Sie die Standardauswahl bei.",
-        "info_instruction_3": "Klicken Sie auf die Schaltfläche <strong>ERSTELLEN</strong>.",
-        "alert_generate_first": "Sie müssen zuerst die Teams erstellen, um sie teilen zu können.",
-        "info_instruction_4": "Verwenden Sie die Schaltfläche <strong>TEILEN</strong>, um die Teams in die Zwischenablage zu kopieren."
+        "info_instruction_2": "Für ausgewogene Teams geben Sie den Rang jedes Spielers nach seinem Namen an, getrennt durch (;) oder (:). <span class='text-danger'>Sie müssen nur die ganze Zahl eingeben. Zum Beispiel, für einen Rang von 24.886: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Wenn Sie keine Ränge angeben, werden die Teams zu 100% zufällig sortiert.",
+        "info_instruction_4": "Wählen Sie die Karten aus, die Sie spielen möchten, oder behalten Sie die Standardauswahl bei.",
+        "info_instruction_5": "Drücken Sie die <strong>ERSTELLEN</strong>-Taste und lassen Sie das Spiel beginnen!",
+        "info_instruction_6": "Verwenden Sie die <strong>TEILEN</strong>-Schaltfläche, um die Teams in die Zwischenablage zu kopieren.",
+        "alert_generate_first": "Sie müssen zuerst die Teams erstellen, um sie teilen zu können."
     },
     // French
     "fr": {
+        "error_rank_too_high": "Le rang de {nombre} est invalide. Entrez uniquement des nombres entiers (ex: 24).",
         "player_placeholder_label": "Noms des Joueurs",
         "join_discord": "REJOINDRE",
-        "meta_description": "Créez des équipes aléatoires 5vs5 pour vos matchs de Counter-Strike 2 à partir d'une liste de 10 joueurs. L'outil parfait pour des parties personnalisées avec des équipes aléatoires.",
+        "meta_description": "Créez des équipes aléatoires 5vs5 pour vos matchs de Counter-Strike 2 à partir d'une liste de 10 joueurs. L'outil parfait pour des parties personnalisées et équilibrées.",
         "generate": "GÉNÉRER",
         "clear": "EFFACER",
         "share": "PARTAGER",
@@ -168,16 +184,19 @@ const translations = {
         "info_subtitle": "Créez des équipes aléatoires pour vos matchs 5v5 à partir d'une liste de 10 joueurs.",
         "info_how_it_works_title": "Comment ça marche ?",
         "info_instruction_1": "Entrez 10 noms de joueurs dans le champ de texte, séparés par des virgules.",
-        "info_instruction_2": "Sélectionnez les cartes que vous voulez jouer ou laissez la sélection par défaut.",
-        "info_instruction_3": "Cliquez sur le bouton <strong>GÉNÉRER</strong>.",
-        "alert_generate_first": "Vous devez d'abord générer les équipes pour pouvoir les partager.",
-        "info_instruction_4": "Utilisez le bouton <strong>PARTAGER</strong> pour copier les équipes dans votre presse-papiers."
+        "info_instruction_2": "Pour des équipes équilibrées, spécifiez le rang de chaque joueur après son nom, séparé par (;) ou (:). <span class='text-danger'>Vous devez seulement entrer le nombre entier. Par exemple, pour un rang de 24.886: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Si vous ne spécifiez pas de rangs, les équipes seront tirées au sort de manière 100% aléatoire.",
+        "info_instruction_4": "Sélectionnez les cartes que vous voulez jouer ou laissez la sélection par défaut.",
+        "info_instruction_5": "Appuyez sur le bouton <strong>GÉNÉRER</strong> et que le match commence !",
+        "info_instruction_6": "Utilisez le bouton <strong>PARTAGER</strong> pour copier les équipes dans votre presse-papiers.",
+        "alert_generate_first": "Vous devez d'abord générer les équipes pour pouvoir les partager."
     },
     // Italian
     "it": {
+        "error_rank_too_high": "Il rank di {nome} non è valido. Inserisci solo numeri interi (es: 24).",
         "player_placeholder_label": "Nomi dei Giocatori",
         "join_discord": "UNISCITI",
-        "meta_description": "Crea squadre casuali 5vs5 per le tue partite di Counter-Strike 2 da un elenco di 10 giocatori. Lo strumento perfetto per partite personalizzate con squadre casuali.",
+        "meta_description": "Crea squadre casuali 5vs5 per le tue partite di Counter-Strike 2 da un elenco di 10 giocatori. Lo strumento perfetto per partite personalizzate e bilanciate.",
         "generate": "GENERA",
         "clear": "CANCELLA",
         "share": "CONDIVIDI",
@@ -197,16 +216,19 @@ const translations = {
         "info_subtitle": "Crea squadre casuali per le tue partite 5v5 da un elenco di 10 giocatori.",
         "info_how_it_works_title": "Come funziona?",
         "info_instruction_1": "Inserisci 10 nomi di giocatori nel campo di testo, separati da virgole.",
-        "info_instruction_2": "Seleziona le mappe che vuoi giocare o lascia la selezione predefinita.",
-        "info_instruction_3": "Fai clic sul pulsante <strong>GENERA</strong>.",
-        "alert_generate_first": "Devi prima generare le squadre per poterle condividere.",
-        "info_instruction_4": "Usa il pulsante <strong>CONDIVIDI</strong> per copiare le squadre negli appunti."
+        "info_instruction_2": "Per squadre bilanciate, specifica il rank di ogni giocatore dopo il suo nome, separato da (;) o (:). <span class='text-danger'>Devi solo inserire il numero intero. Ad esempio, per un rank di 24.886: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Se non specifichi i rank, le squadre saranno sorteggiate in modo 100% casuale.",
+        "info_instruction_4": "Seleziona le mappe che vuoi giocare o lascia la selezione predefinita.",
+        "info_instruction_5": "Premi il pulsante <strong>GENERA</strong> e che la partita abbia inizio!",
+        "info_instruction_6": "Usa il pulsante <strong>CONDIVIDI</strong> per copiare le squadre negli appunti.",
+        "alert_generate_first": "Devi prima generare le squadre per poterle condividere."
     },
     // Polish
     "pl": {
+        "error_rank_too_high": "Ranga {nombre} jest nieprawidłowa. Wpisz tylko liczby całkowite (np. 24).",
         "player_placeholder_label": "Nazwy Graczy",
         "join_discord": "DOŁĄCZ",
-        "meta_description": "Twórz losowe drużyny 5vs5 do meczów w Counter-Strike 2 z listy 10 graczy. Idealne narzędzie do gier niestandardowych z losowymi drużynami.",
+        "meta_description": "Twórz losowe drużyny 5vs5 do meczów w Counter-Strike 2 z listy 10 graczy. Idealne narzędzie do gier niestandardowych i zrównoważonych.",
         "generate": "GENERUJ",
         "clear": "WYCZYŚĆ",
         "share": "UDOSTĘPNIJ",
@@ -226,16 +248,19 @@ const translations = {
         "info_subtitle": "Twórz losowe drużyny do meczów 5v5 z listy 10 graczy.",
         "info_how_it_works_title": "Jak to działa?",
         "info_instruction_1": "Wprowadź 10 nazw graczy w polu tekstowym, oddzielonych przecinkami.",
-        "info_instruction_2": "Wybierz mapy, na których chcesz grać, lub pozostaw domyślny wybór.",
-        "info_instruction_3": "Kliknij przycisk <strong>GENERUJ</strong>.",
-        "alert_generate_first": "Musisz najpierw wygenerować drużyny, aby móc je udostępnić.",
-        "info_instruction_4": "Użyj przycisku <strong>UDOSTĘPNIJ</strong>, aby skopiować drużyny do schowka."
+        "info_instruction_2": "Dla zrównoważonych drużyn, podaj rangę każdego gracza po jego imieniu, oddzieloną (;) lub (:). <span class='text-danger'>Wystarczy, że wpiszesz liczbę całkowitą. Na przykład, dla rangi 24.886: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Jeśli nie podasz rang, drużyny zostaną posortowane w 100% losowo.",
+        "info_instruction_4": "Wybierz mapy, na których chcesz grać, lub pozostaw domyślny wybór.",
+        "info_instruction_5": "Naciśnij przycisk <strong>GENERUJ</strong> i niech mecz się zacznie!",
+        "info_instruction_6": "Użyj przycisku <strong>UDOSTĘPNIJ</strong>, aby skopiować drużyny do schowka.",
+        "alert_generate_first": "Musisz najpierw wygenerować drużyny, aby móc je udostępnić."
     },
     // Russian
     "ru": {
+        "error_rank_too_high": "Ранг игрока {nombre} недопустим. Вводите только целые числа (напр., 24).",
         "player_placeholder_label": "Имена игроков",
         "join_discord": "ВОЙТИ",
-        "meta_description": "Создавайте случайные команды 5на5 для ваших матчей в Counter-Strike 2 из списка10 игроков. Идеальный инструмент для пользовательских игр со случайными командами.",
+        "meta_description": "Создавайте случайные команды 5на5 для ваших матчей в Counter-Strike 2 из списка 10 игроков. Идеальный инструмент для пользовательских и сбалансированных игр.",
         "generate": "СОЗДАТЬ",
         "clear": "ОЧИСТИТЬ",
         "share": "ПОДЕЛИТЬСЯ",
@@ -255,16 +280,19 @@ const translations = {
         "info_subtitle": "Создавайте случайные команды для ваших матчей 5на5 из списка 10 игроков.",
         "info_how_it_works_title": "Как это работает?",
         "info_instruction_1": "Введите 10 имен игроков в текстовое поле через запятую.",
-        "info_instruction_2": "Выберите карты, на которых хотите играть, или оставьте выбор по умолчанию.",
-        "info_instruction_3": "Нажмите кнопку <strong>СОЗДАТЬ</strong>.",
-        "alert_generate_first": "Сначала вы должны создать команды, чтобы поделиться ими.",
-        "info_instruction_4": "Используйте кнопку <strong>ПОДЕЛИТЬСЯ</strong>, чтобы скопировать команды в буфер обмена."
+        "info_instruction_2": "Для сбалансированных команд укажите ранг каждого игрока после его имени, через (;) или (:). <span class='text-danger'>Вам нужно ввести только целое число. Например, для ранга 24.886: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Если вы не укажете ранги, команды будут отсортированы на 100% случайным образом.",
+        "info_instruction_4": "Выберите карты, на которых хотите играть, или оставьте выбор по умолчанию.",
+        "info_instruction_5": "Нажмите кнопку <strong>СОЗДАТЬ</strong>, и пусть начнется матч!",
+        "info_instruction_6": "Используйте кнопку <strong>ПОДЕЛИТЬСЯ</strong>, чтобы скопировать команды в буфер обмена.",
+        "alert_generate_first": "Сначала вы должны создать команды, чтобы поделиться ими."
     },
     // Chinese (Simplified)
     "zh-CN": {
+        "error_rank_too_high": "{nombre}的等级无效。请输入整数（例如：24）。",
         "player_placeholder_label": "玩家名称",
         "join_discord": "加入",
-        "meta_description": "从10名玩家的列表中为您的《反恐精英2》比赛创建随机的5v5团队。创建随机团队自定义游戏的完美工具。",
+        "meta_description": "从10名玩家的列表中为您的《反恐精英2》比赛创建随机的5v5团队。创建自定义和平衡比赛的完美工具。",
         "generate": "生成",
         "clear": "清除",
         "share": "分享",
@@ -284,16 +312,19 @@ const translations = {
         "info_subtitle": "从10名玩家的列表中为您的5v5比赛创建随机团队。",
         "info_how_it_works_title": "如何操作？",
         "info_instruction_1": "在文本字段中输入10个玩家名称，用逗号分隔。",
-        "info_instruction_2": "选择您想玩的地图或保留默认选择。",
-        "info_instruction_3": "点击 <strong>生成</strong> 按钮。",
-        "alert_generate_first": "您必须先生成团队才能分享。",
-        "info_instruction_4": "使用 <strong>分享</strong> 按钮将团队复制到剪贴板。"
+        "info_instruction_2": "对于平衡的团队，请在玩家名称后用 (;) 或 (:) 分隔指定其等级。<span class='text-danger'>您只需要输入整数。例如，对于24.886的等级：The-King:24, s1mple;24。</span>",
+        "info_instruction_3": "如果您不指定等级，团队将100%随机排序。",
+        "info_instruction_4": "选择您想玩的地图或保留默认选择。",
+        "info_instruction_5": "按下 <strong>生成</strong> 按钮，让比赛开始吧！",
+        "info_instruction_6": "使用 <strong>分享</strong> 按钮将团队复制到剪贴板。",
+        "alert_generate_first": "您必须先生成团队才能分享。"
     },
     // Korean
     "ko": {
+        "error_rank_too_high": "{nombre}의 랭크가 유효하지 않습니다. 정수만 입력하세요 (예: 24).",
         "player_placeholder_label": "선수 이름",
         "join_discord": "참여하기",
-        "meta_description": "10명의 플레이어 목록에서 카운터-스트라이크 2 경기를 위한 무작위 5vs5 팀을 만듭니다. 무작위 팀으로 사용자 지정 게임을 위한 완벽한 도구입니다.",
+        "meta_description": "10명의 플레이어 목록에서 카운터-스트라이크 2 경기를 위한 무작위 5vs5 팀을 만듭니다. 사용자 지정 및 균형 잡힌 경기를 위한 완벽한 도구입니다.",
         "generate": "생성하기",
         "clear": "지우기",
         "share": "공유하기",
@@ -313,16 +344,19 @@ const translations = {
         "info_subtitle": "10명의 플레이어 목록에서 5v5 경기를 위한 무작위 팀을 만듭니다.",
         "info_how_it_works_title": "어떻게 사용하나요?",
         "info_instruction_1": "텍스트 필드에 10명의 플레이어 이름을 쉼표로 구분하여 입력하세요.",
-        "info_instruction_2": "플레이하고 싶은 맵을 선택하거나 기본 선택을 그대로 두세요.",
-        "info_instruction_3": "<strong>생성하기</strong> 버튼을 클릭하세요.",
-        "alert_generate_first": "공유하려면 먼저 팀을 생성해야 합니다.",
-        "info_instruction_4": "<strong>공유하기</strong> 버튼을 사용하여 팀을 클립보드에 복사하세요."
+        "info_instruction_2": "균형 잡힌 팀을 위해, 각 플레이어의 순위를 이름 뒤에 (;) 또는 (:)로 구분하여 지정하십시오. <span class='text-danger'>정수만 입력하면 됩니다. 예를 들어, 순위가 24.886인 경우: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "순위를 지정하지 않으면 팀은 100% 무작위로 정렬됩니다.",
+        "info_instruction_4": "플레이하고 싶은 맵을 선택하거나 기본 선택을 그대로 두세요.",
+        "info_instruction_5": "<strong>생성하기</strong> 버튼을 누르고 경기를 시작하세요!",
+        "info_instruction_6": "<strong>공유하기</strong> 버튼을 사용하여 팀을 클립보드에 복사하세요.",
+        "alert_generate_first": "공유하려면 먼저 팀을 생성해야 합니다."
     },
     // Japanese
     "ja": {
+        "error_rank_too_high": "{nombre}のランクが無効です。整数のみを入力してください（例：24）。",
         "player_placeholder_label": "プレイヤー名",
         "join_discord": "参加する",
-        "meta_description": "10人のプレイヤーリストからカウンターストライク2のマッチ用にランダムな5v5チームを作成します。ランダムチームでのカスタムゲームに最適なツールです。",
+        "meta_description": "10人のプレイヤーリストからカウンターストライク2のマッチ用にランダムな5v5チームを作成します。カスタムでバランスの取れたマッチに最適なツールです。",
         "generate": "生成",
         "clear": "クリア",
         "share": "共有",
@@ -342,16 +376,19 @@ const translations = {
         "info_subtitle": "10人のプレイヤーリストから5v5マッチのランダムなチームを作成します。",
         "info_how_it_works_title": "使い方",
         "info_instruction_1": "テキストフィールドに10人のプレイヤー名をコンマで区切って入力します。",
-        "info_instruction_2": "プレイしたいマップを選択するか、デフォルトの選択のままにします。",
-        "info_instruction_3": "<strong>生成</strong>ボタンをクリックします。",
-        "alert_generate_first": "共有するには、まずチームを生成する必要があります。",
-        "info_instruction_4": "<strong>共有</strong>ボタンを使ってチームをクリップボードにコピーします。"
+        "info_instruction_2": "バランスの取れたチームの場合、各プレイヤーのランクを名前の後に (;) または (:) で区切って指定します。<span class='text-danger'>整数のみを入力する必要があります。例えば、ランクが24.886の場合：The-King:24, s1mple;24。</span>",
+        "info_instruction_3": "ランクを指定しない場合、チームは100%ランダムにソートされます。",
+        "info_instruction_4": "プレイしたいマップを選択するか、デフォルトの選択のままにします。",
+        "info_instruction_5": "<strong>生成</strong>ボタンを押して、試合を開始しましょう！",
+        "info_instruction_6": "<strong>共有</strong>ボタンを使ってチームをクリップボードにコピーします。",
+        "alert_generate_first": "共有するには、まずチームを生成する必要があります。"
     },
     // Turkish
     "tr": {
+        "error_rank_too_high": "{nombre} adlı oyuncunun rankı geçersiz. Sadece tam sayı girin (örn: 24).",
         "player_placeholder_label": "Oyuncu İsimleri",
         "join_discord": "KATIL",
-        "meta_description": "10 oyuncu listesinden Counter-Strike 2 maçlarınız için rastgele 5'e 5 takımlar oluşturun. Rastgele takımlarla özel oyunlar için mükemmel bir araç.",
+        "meta_description": "10 oyuncu listesinden Counter-Strike 2 maçlarınız için rastgele 5'e 5 takımlar oluşturun. Özel ve dengeli maçlar için mükemmel bir araç.",
         "generate": "OLUŞTUR",
         "clear": "TEMİZLE",
         "share": "PAYLAŞ",
@@ -371,9 +408,11 @@ const translations = {
         "info_subtitle": "10 oyuncu listesinden 5'e 5 maçlarınız için rastgele takımlar oluşturun.",
         "info_how_it_works_title": "Nasıl çalışır?",
         "info_instruction_1": "Metin alanına virgülle ayrılmış 10 oyuncu adı girin.",
-        "info_instruction_2": "Oynamak istediğiniz haritaları seçin veya varsayılan seçimi bırakın.",
-        "info_instruction_3": "<strong>OLUŞTUR</strong> düğmesine tıklayın.",
-        "alert_generate_first": "Paylaşabilmek için önce takımları oluşturmalısınız.",
-        "info_instruction_4": "Takımları panoya kopyalamak için <strong>PAYLAŞ</strong> düğmesini kullanın."
+        "info_instruction_2": "Dengeli takımlar için, her oyuncunun derecesini adından sonra (;) veya (:) ile ayırarak belirtin. <span class='text-danger'>Sadece tam sayıyı girmeniz yeterlidir. Örneğin, 24.886 derecesi için: The-King:24, s1mple;24.</span>",
+        "info_instruction_3": "Dereceleri belirtmezseniz, takımlar %100 rastgele sıralanır.",
+        "info_instruction_4": "Oynamak istediğiniz haritaları seçin veya varsayılan seçimi bırakın.",
+        "info_instruction_5": "<strong>OLUŞTUR</strong> düğmesine basın ve maç başlasın!",
+        "info_instruction_6": "Takımları panoya kopyalamak için <strong>PAYLAŞ</strong> düğmesini kullanın.",
+        "alert_generate_first": "Paylaşabilmek için önce takımları oluşturmalısınız."
     }
 };
