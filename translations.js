@@ -1,7 +1,7 @@
 const translations = {
     // Spanish
     "es": {
-        "error_rank_too_high": "El rango de {nombre} es inválido. Ingresa solo números enteros (ej: 24).",
+        "error_rank_too_high": "El rango de {nombre} es demasiado alto (>40).",
         "player_placeholder_label": "Nombres de los Jugadores",
         "join_discord": "ÚNETE",
         "meta_description": "Crea equipos aleatorios 5vs5 para tus partidas de Counter-Strike 2 a partir de una lista de 10 jugadores. La herramienta perfecta para partidas personalizadas y balanceadas.",
@@ -33,7 +33,7 @@ const translations = {
     },
     // English
     "en": {
-        "error_rank_too_high": "The rank for {nombre} is invalid. Enter only whole numbers (e.g., 24).",
+        "error_rank_too_high": "The rank for {nombre} is too high (>40).",
         "player_placeholder_label": "Player Names",
         "join_discord": "JOIN",
         "meta_description": "Create random 5vs5 teams for your Counter-Strike 2 matches from a list of 10 players. The perfect tool for custom and balanced matches.",
@@ -65,7 +65,7 @@ const translations = {
     },
     // Portuguese (Brazil)
     "pt-BR": {
-        "error_rank_too_high": "O rank de {nome} é inválido. Insira apenas números inteiros (ex: 24).",
+        "error_rank_too_high": "O rank de {nombre} é muito alto (>40).",
         "player_placeholder_label": "Nomes dos Jogadores",
         "join_discord": "ENTRAR",
         "meta_description": "Crie equipes aleatórias 5vs5 para suas partidas de Counter-Strike 2 a partir de uma lista de 10 jogadores. A ferramenta perfeita para partidas personalizadas e balanceadas.",
@@ -97,7 +97,7 @@ const translations = {
     },
     // Portuguese (Portugal)
     "pt-PT": {
-        "error_rank_too_high": "O rank de {nome} é inválido. Introduza apenas números inteiros (ex: 24).",
+        "error_rank_too_high": "O rank de {nombre} é muito alto (>40).",
         "player_placeholder_label": "Nomes dos Jogadores",
         "join_discord": "ENTRAR",
         "meta_description": "Crie equipas aleatórias 5vs5 para os seus jogos de Counter-Strike 2 a partir de uma lista de 10 jogadores. A ferramenta perfeita para jogos personalizados e equilibrados.",
@@ -129,7 +129,7 @@ const translations = {
     },
     // German
     "de": {
-        "error_rank_too_high": "Der Rang von {nombre} ist ungültig. Geben Sie nur ganze Zahlen ein (z.B. 24).",
+        "error_rank_too_high": "Der Rang von {nombre} ist zu hoch (>40).",
         "player_placeholder_label": "Spielernamen",
         "join_discord": "BEITRETEN",
         "meta_description": "Erstellen Sie zufällige 5vs5-Teams für Ihre Counter-Strike 2-Matches aus einer Liste von 10 Spielern. Das perfekte Werkzeug für benutzerdefinierte und ausgewogene Spiele.",
@@ -161,7 +161,7 @@ const translations = {
     },
     // French
     "fr": {
-        "error_rank_too_high": "Le rang de {nombre} est invalide. Entrez uniquement des nombres entiers (ex: 24).",
+        "error_rank_too_high": "Le rang de {nombre} est trop élevé (>40).",
         "player_placeholder_label": "Noms des Joueurs",
         "join_discord": "REJOINDRE",
         "meta_description": "Créez des équipes aléatoires 5vs5 pour vos matchs de Counter-Strike 2 à partir d'une liste de 10 joueurs. L'outil parfait pour des parties personnalisées et équilibrées.",
@@ -193,7 +193,7 @@ const translations = {
     },
     // Italian
     "it": {
-        "error_rank_too_high": "Il rank di {nome} non è valido. Inserisci solo numeri interi (es: 24).",
+        "error_rank_too_high": "Il rank di {nombre} è troppo alto (>40).",
         "player_placeholder_label": "Nomi dei Giocatori",
         "join_discord": "UNISCITI",
         "meta_description": "Crea squadre casuali 5vs5 per le tue partite di Counter-Strike 2 da un elenco di 10 giocatori. Lo strumento perfetto per partite personalizzate e bilanciate.",
@@ -225,7 +225,7 @@ const translations = {
     },
     // Polish
     "pl": {
-        "error_rank_too_high": "Ranga {nombre} jest nieprawidłowa. Wpisz tylko liczby całkowite (np. 24).",
+        "error_rank_too_high": "Ranga {nombre} jest za wysoka (>40).",
         "player_placeholder_label": "Nazwy Graczy",
         "join_discord": "DOŁĄCZ",
         "meta_description": "Twórz losowe drużyny 5vs5 do meczów w Counter-Strike 2 z listy 10 graczy. Idealne narzędzie do gier niestandardowych i zrównoważonych.",
@@ -257,7 +257,7 @@ const translations = {
     },
     // Russian
     "ru": {
-        "error_rank_too_high": "Ранг игрока {nombre} недопустим. Вводите только целые числа (напр., 24).",
+        "error_rank_too_high": "Ранг игрока {nombre} слишком высок (>40).",
         "player_placeholder_label": "Имена игроков",
         "join_discord": "ВОЙТИ",
         "meta_description": "Создавайте случайные команды 5на5 для ваших матчей в Counter-Strike 2 из списка 10 игроков. Идеальный инструмент для пользовательских и сбалансированных игр.",
@@ -289,7 +289,7 @@ const translations = {
     },
     // Chinese (Simplified)
     "zh-CN": {
-        "error_rank_too_high": "{nombre}的等级无效。请输入整数（例如：24）。",
+        "error_rank_too_high": "{nombre}的等级太高（>40）。",
         "player_placeholder_label": "玩家名称",
         "join_discord": "加入",
         "meta_description": "从10名玩家的列表中为您的《反恐精英2》比赛创建随机的5v5团队。创建自定义和平衡比赛的完美工具。",
@@ -321,7 +321,7 @@ const translations = {
     },
     // Korean
     "ko": {
-        "error_rank_too_high": "{nombre}의 랭크가 유효하지 않습니다. 정수만 입력하세요 (예: 24).",
+        "error_rank_too_high": "{nombre}의 랭크가 너무 높습니다 (>40).",
         "player_placeholder_label": "선수 이름",
         "join_discord": "참여하기",
         "meta_description": "10명의 플레이어 목록에서 카운터-스트라이크 2 경기를 위한 무작위 5vs5 팀을 만듭니다. 사용자 지정 및 균형 잡힌 경기를 위한 완벽한 도구입니다.",
@@ -353,7 +353,7 @@ const translations = {
     },
     // Japanese
     "ja": {
-        "error_rank_too_high": "{nombre}のランクが無効です。整数のみを入力してください（例：24）。",
+        "error_rank_too_high": "{nombre}のランクが高すぎます（>40）。",
         "player_placeholder_label": "プレイヤー名",
         "join_discord": "参加する",
         "meta_description": "10人のプレイヤーリストからカウンターストライク2のマッチ用にランダムな5v5チームを作成します。カスタムでバランスの取れたマッチに最適なツールです。",
@@ -385,7 +385,7 @@ const translations = {
     },
     // Turkish
     "tr": {
-        "error_rank_too_high": "{nombre} adlı oyuncunun rankı geçersiz. Sadece tam sayı girin (örn: 24).",
+        "error_rank_too_high": "{nombre} adlı oyuncunun rankı çok yüksek (>40).",
         "player_placeholder_label": "Oyuncu İsimleri",
         "join_discord": "KATIL",
         "meta_description": "10 oyuncu listesinden Counter-Strike 2 maçlarınız için rastgele 5'e 5 takımlar oluşturun. Özel ve dengeli maçlar için mükemmel bir araç.",

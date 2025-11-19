@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { min: 15000, max: 19999, color: '#bb6dfb', imagen: 'bb6dfbff.png' },
         { min: 20000, max: 24999, color: '#e017ef', imagen: 'e017efff.png' },
         { min: 25000, max: 29999, color: '#e84a4b', imagen: 'e84a4bff.png' },
-        { min: 30000, max: 36000, color: '#fed607', imagen: 'fed607ff.png' }
+        { min: 30000, max: 45000, color: '#fed607', imagen: 'fed607ff.png' }
     ].map(rango => ({
         ...rango, // 1. Copia todas las propiedades existentes (min, max, color, imagen)
         // 2. Sobrescribe la propiedad 'imagen' con el Data URI completo
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return Math.floor(Math.random() * 1000); // Devuelve un número entre 0 y 999
         }
         // Si no, genera un número entre 1000 y 33,999 para asegurar 4+ dígitos
-        return Math.floor(Math.random() * 34001) + 1000;
+        return Math.floor(Math.random() * 39001) + 1000;
     }
 
     function obtenerInfoRango(numeroRango) {
@@ -1070,22 +1070,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     const soloDigitos = rangoStr.replace(/\D/g, '');
                     if (soloDigitos.length > 0) {
                         const rangoNumValidacion = parseInt(soloDigitos, 10);
-
-                        // --- ¡AQUÍ ESTÁ TU LÓGICA DE VALIDACIÓN! ---
-                        if (rangoNumValidacion > 35) {
+                        if (rangoNumValidacion > 40) {
                             const mensaje = diccionario.error_rank_too_high.replace('{nombre}', `'${nombre}'`);
                             if (!errores.includes(mensaje)) {
                                 errores.push(mensaje); // Añadimos el error al array que nos pasaron
                             }
                         }
-                        // --- FIN DE LA VALIDACIÓN ---
-
                         const rangoFinalStr = soloDigitos.substring(0, 2);
                         const rangoFinalNum = parseInt(rangoFinalStr, 10);
-
-                        const minSkill = rangoFinalNum * 1000;
-                        const maxSkill = minSkill + 999;
-                        skill = Math.floor(Math.random() * (maxSkill - minSkill + 1)) + minSkill;
+                        if (rangoFinalNum === 40) {
+                            skill = 40000;
+                        } else {
+                            const minSkill = rangoFinalNum * 1000;
+                            const maxSkill = minSkill + 999;
+                            skill = Math.floor(Math.random() * (maxSkill - minSkill + 1)) + minSkill;
+                        }
                     }
                 }
             }
