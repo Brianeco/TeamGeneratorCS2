@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { min: 15000, max: 19999, color: '#bb6dfb', imagen: 'bb6dfbff.png' },
         { min: 20000, max: 24999, color: '#e017ef', imagen: 'e017efff.png' },
         { min: 25000, max: 29999, color: '#e84a4b', imagen: 'e84a4bff.png' },
-        { min: 30000, max: 45000, color: '#fed607', imagen: 'fed607ff.png' }
+        { min: 30000, max: 40000, color: '#fed607', imagen: 'fed607ff.png' }
     ].map(rango => ({
         ...rango, // 1. Copia todas las propiedades existentes (min, max, color, imagen)
         // 2. Sobrescribe la propiedad 'imagen' con el Data URI completo
@@ -1097,7 +1097,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     errores.push(diccionario.error_duplicates);
                  }
             }
-
+            if (skill > 40000) {
+                skill = 40000;
+            }
             jugadores.push({ name: nombre, skill: skill });
         });
 
@@ -1110,50 +1112,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================================================
-    // FIN --- NUEVA LÓGICA DE BALANCEO DE EQUIPOS
+    // FIN --- procesarJugadoresDesdeTextarea
     // =========================================================================
 
 
-    // ... aquí está la función procesarJugadoresDesdeTextarea() que ya tienes ...
-
-    /**
-     * Algoritmo de balanceo de equipos.
-     * Ordena a los jugadores por habilidad y los distribuye uno a uno* en el equipo con la menor suma de habilidad total.
-     * @param {Array<{name: string, skill: number}>} jugadores - El array de objetos de jugador.
-     * @returns {{equipo1: Array<string>, equipo2: Array<string>}} Objeto con los dos equipos balanceados.
-     */
     // =========================================================================
-    // ====> FUNCIÓN balancearEquipos (VERSIÓN FINAL Y CORRECTA)
+    // ====> FUNCIÓN balancearEquipos (VERSIÓN MEJORADA: "MEJOR DE N INTENTOS")
     // =========================================================================
     function balancearEquipos(jugadores) {
-        // 1. Creamos una COPIA y la ordenamos de MAYOR a MENOR habilidad.
-        const jugadoresOrdenados = [...jugadores].sort((a, b) => b.skill - a.skill);
+        // Configuración: Cuántas combinaciones aleatorias probaremos antes de elegir la mejor.
+        // 50 es un buen equilibrio entre velocidad y calidad.
+        const INTENTOS = 50;
 
-        const equipo1 = [];
-        const equipo2 = [];
+        let mejorDiferencia = Infinity;
+        let mejorCombinacion = { equipo1: [], equipo2: [] };
 
-        // 2. Distribuimos usando el patrón "ABBA" para garantizar 5 vs 5
-        // Este patrón asegura un balance excelente y siempre el mismo número de jugadores.
-        // A, B, B, A, A, B, B, A, A, B
-        // 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 (índices del array ordenado)
-        equipo1.push(jugadoresOrdenados[0]); // A
-        equipo2.push(jugadoresOrdenados[1]); // B
-        equipo2.push(jugadoresOrdenados[2]); // B
-        equipo1.push(jugadoresOrdenados[3]); // A
-        equipo1.push(jugadoresOrdenados[4]); // A
-        equipo2.push(jugadoresOrdenados[5]); // B
-        equipo2.push(jugadoresOrdenados[6]); // B
-        equipo1.push(jugadoresOrdenados[7]); // A
-        equipo1.push(jugadoresOrdenados[8]); // A
-        equipo2.push(jugadoresOrdenados[9]); // B
+        // Bucle para probar N combinaciones diferentes
+        for (let i = 0; i < INTENTOS; i++) {
+            // 1. Mezclamos el array de jugadores aleatoriamente
+            // Usamos una copia [...jugadores] para no modificar el original mientras iteramos
+            const jugadoresMezclados = shuffle([...jugadores]);
 
-        // Opcional: Para verificar los skill totales en consola.
-        const skillEquipo1 = equipo1.reduce((total, p) => total + p.skill, 0);
-        const skillEquipo2 = equipo2.reduce((total, p) => total + p.skill, 0);
-        console.log(`[Balanceador ABBA] Equipos balanceados. Skill T1: ${skillEquipo1}, Skill T2: ${skillEquipo2}`);
+            // 2. Partimos la lista en dos mitades (5 vs 5)
+            const equipoA = jugadoresMezclados.slice(0, 5);
+            const equipoB = jugadoresMezclados.slice(5, 10);
 
-        return { equipo1, equipo2 };
+            // 3. Calculamos el Skill Total de cada equipo
+            const skillA = equipoA.reduce((total, j) => total + j.skill, 0);
+            const skillB = equipoB.reduce((total, j) => total + j.skill, 0);
+
+            // 4. Vemos la diferencia absoluta (cuán lejos están de ser iguales)
+            const diferencia = Math.abs(skillA - skillB);
+
+            // 5. Si esta combinación es más pareja que la mejor que teníamos, la guardamos
+            if (diferencia < mejorDiferencia) {
+                mejorDiferencia = diferencia;
+                mejorCombinacion = { equipo1: equipoA, equipo2: equipoB };
+
+                // Optimización: Si encontramos una diferencia de 0 (perfecta), paramos ya.
+                if (diferencia === 0) break;
+            }
+        }
+
+        console.log(`[Balanceador Probabilístico] Mejor diferencia encontrada tras ${INTENTOS} intentos: ${mejorDiferencia}`);
+
+        return mejorCombinacion;
     }
+
 
 
 
