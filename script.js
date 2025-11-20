@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let mapaElegido = esItemGanador ? mapaGanador : mapas[Math.floor(Math.random() * mapas.length)];
             const urlImagen = IMAGENES_DATA[`cards/${mapaElegido}.jpg`];
             urlsParaPrecargar.push(urlImagen);
-            tiraDeImagenes.push(`<img src="${urlImagen}">`);
+            tiraDeImagenes.push(`<img src="${urlImagen}" draggable="false">`);
         }
         // 3. Pre-cargamos las imágenes.
         precargarImagenesRuleta(urlsParaPrecargar, () => {
@@ -510,6 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const avatarDiv = document.createElement('div');
             avatarDiv.className = 'jugador-avatar';
             const avatarImg = document.createElement('img');
+            avatarImg.setAttribute('draggable', 'false');
             avatarImg.className = 'jugador-avatar-img';
             avatarDiv.appendChild(avatarImg);
             // --- 2. Creación del Rango (con placeholders) ---
@@ -769,7 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         textoRangoHtml = numeroFormateado.replaceAll('.', ',<span class="rango-decimales">') + '</span>';
                     }
                     textoRangoHtml = textoRangoHtml.replaceAll(',<span class="rango-decimales"></span>', '');
-                    return `<li class="fila-jugador"><div class="jugador-avatar" style="background-color: ${jugador.color};"><img src="${jugador.avatar}" class="jugador-avatar-img"></div><div class="jugador-rango-contenedor" style="background-image: url(${jugador.rango.info.imagen});"><span class="jugador-rango-texto" style="color: ${jugador.rango.info.color};">${textoRangoHtml}</span></div><span class="jugador-nombre">${jugador.nombre}</span></li>`;
+                    return `<li class="fila-jugador"><div class="jugador-avatar" style="background-color: ${jugador.color};"><img src="${jugador.avatar}" class="jugador-avatar-img" draggable="false"></div><div class="jugador-rango-contenedor" style="background-image: url(${jugador.rango.info.imagen});"><span class="jugador-rango-texto" style="color: ${jugador.rango.info.color};">${textoRangoHtml}</span></div><span class="jugador-nombre">${jugador.nombre}</span></li>`;
                 };
 
                 mapaTarjetaImg.src = IMAGENES_DATA[`cards/${nombreMapaElegido}.jpg`];
